@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: api-gateway-routes
+  cloud:
+    gateway:
+      routes:
+        # 转发csdn
+        - id: url-proxy-1
+          uri: http://blog.csdn.net
+          predicates:
+            - Path=/csdn/**
+        # 转发baidu
+        - id: url-proxy-2
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/more/**

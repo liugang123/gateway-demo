@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: api-gateway-fliter
+  cloud:
+    gateway:
+      routes:
+        - id: url-proxy-rewrite
+          uri: http://www.dzkbw.com
+          predicates:
+            - Path=/books/**
+          filters:
+            - RewritePath=/books(?<segment>/?.*), /books/$\{segment}
+        # 自定义filter
+        - id: url-proxy-fliter
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Path=/requestTime/**
+          filters:
+            - RequestTime=false
