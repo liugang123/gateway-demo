@@ -1,0 +1,22 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: dubbo-service
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  # 挂载spring-cloud注册中心
+  registry:
+    address: spring-cloud://localhost
+  consumer:
+    check: false

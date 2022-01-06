@@ -1,5 +1,6 @@
 package gateway.demo.filter.factory;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.List;
  * @create 2021/10/25
  */
 @Component
+@Slf4j
 public class RequestTimeGatewayFilterFactory extends AbstractGatewayFilterFactory<RequestTimeGatewayFilterFactory.Config> {
 
     private static final String REQUEST_TIME_BEGIN = "requestTimeBegin";

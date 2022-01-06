@@ -5,6 +5,11 @@ spring:
   application:
     name: api-gateway-fliter
   cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true
     gateway:
       routes:
         - id: url-proxy-rewrite
@@ -20,3 +25,17 @@ spring:
             - Path=/requestTime/**
           filters:
             - RequestTime=false
+        # web请求
+        - id: url-proxy-web
+          uri: lb://web-service
+          predicates:
+            - Path=/web/**
+          filters:
+            - StripPrefix=1
+        # dubbo请求
+        - id: url-proxy-dubbo
+          uri: server://**
+          predicates:
+            - Path=/dubbo/**
+          filters:
+            - Dubbo
