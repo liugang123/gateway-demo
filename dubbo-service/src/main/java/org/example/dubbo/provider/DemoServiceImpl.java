@@ -21,4 +21,11 @@ public class DemoServiceImpl implements DemoService {
         log.info("调用dubbo服务，param:{}", param);
         return param;
     }
+
+    @DubboServiceClient(path = "/demo/test")
+    public String test(Integer param) {
+        log.info("调用dubbo服务，param:{}", param);
+        return String.valueOf(param);
+    }
+
 }

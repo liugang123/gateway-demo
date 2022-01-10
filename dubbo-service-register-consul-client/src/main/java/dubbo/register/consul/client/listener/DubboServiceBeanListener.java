@@ -101,7 +101,7 @@ public class DubboServiceBeanListener implements ApplicationListener<ContextRefr
             appName = serviceBean.getApplication().getName();
         }
         String serviceName = serviceBean.getInterface();
-        String path = contextPath;
+        String path = dubboServiceClient.path();
         String host = NetUtil.getLocalhost().getHostAddress();
         int port = StringUtils.isEmpty(this.port) ? -1 : Integer.parseInt(this.port);
         String methodName = method.getName();

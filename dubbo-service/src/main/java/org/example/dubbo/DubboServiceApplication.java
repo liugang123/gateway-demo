@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-//@EnableDubbo(scanBasePackages = "org.example.dubbo.provider")
+@EnableDubbo(scanBasePackages = "org.example.dubbo.provider")
 public class DubboServiceApplication {
 
     public static void main(String[] args) {

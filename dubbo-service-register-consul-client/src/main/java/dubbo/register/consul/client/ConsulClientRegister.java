@@ -43,7 +43,7 @@ public class ConsulClientRegister implements RegisterService {
         String metadataNodeName = this.buildMetadataNodeName(metadata);
         String metadataPath = String.join("/", "metadata", rpcType, contextPath);
         String realNode = String.join("/", metadataPath, metadataNodeName);
-        String metadataJson = GsonUtils.getInstance().toJson(realNode);
+        String metadataJson = GsonUtils.getInstance().toJson(metadata);
         keyValueClient.setKVValue(realNode, metadataJson);
     }
 
@@ -54,7 +54,7 @@ public class ConsulClientRegister implements RegisterService {
      * @return
      */
     private String buildMetadataNodeName(MetaDataRegisterDTO metadata) {
-        String nodeName = metadata.getServiceName() + "." + metadata.getMethodName();
+        String nodeName = metadata.getServiceName() + "/" + metadata.getMethodName();
         return nodeName.startsWith("/") ? nodeName.substring(1) : nodeName;
     }
 
